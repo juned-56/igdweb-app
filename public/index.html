@@ -1,0 +1,105 @@
+<!-- /public/index.html -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Video Downloader</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>Instagram Video Downloader</h2>
+    <input type="text" id="instaUrl" placeholder="Enter Instagram Video URL">
+    <button onclick="downloadVideo()">Download Video</button>
+    <p id="statusMessage"></p>
+
+    <script>
+        async function downloadVideo() {
+            const url = document.getElementById("instaUrl").value;
+            if (!url) {
+                alert("Please enter a valid Instagram video URL");
+                return;
+            }
+
+            const statusMessage = document.getElementById("statusMessage");
+            statusMessage.textContent = "Downloading... Please wait.";
+
+            try {
+                const response = await fetch("http://localhost:3000/download", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ url })
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const downloadLink = document.createElement("a");
+                    downloadLink.href = URL.createObjectURL(blob);
+                    downloadLink.download = "Instagram_Video.mp4";
+                    downloadLink.click();
+                    statusMessage.textContent = "Download successful!";
+                } else {
+                    statusMessage.textContent = "Failed to download video.";
+                }
+            } catch (error) {
+                console.error(error);
+                statusMessage.textContent = "Error occurred while downloading.";
+            }
+        }
+    </script>
+
+</body>
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <title>Instagram Video Downloader</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 🔹 Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"> <img src="logo.png" alt="Company Logo"> </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+        </ul>
+    </nav>
+
+    <!-- 🔹 Main Content -->
+    <div class="container">
+        <h2>Instagram Video Downloader</h2>
+        <input type="text" id="instaUrl" placeholder="Enter Instagram Video URL">
+        <button onclick="getVideoPreview()">Preview Video</button>
+        <button id="downloadBtn" style="display: none;" onclick="downloadVideo()">Download Video</button>
+
+        <!-- 🔹 Video Preview Section -->
+        <div id="videoPreview" style="display: none;">
+            <h3>Video Preview</h3>
+            <video id="previewPlayer" controls></video>
+        </div>
+
+        <p id="statusMessage"></p>
+    </div>
+
+    <!-- 🔹 Footer -->
+    <footer>
+        <p>&copy; 2024 Video Downloader By Juned Khan. <a href="terms.html">Terms & Conditions</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
